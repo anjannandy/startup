@@ -1,0 +1,29 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: api-client
+            client-secret: 6c769538-58f6-4ff5-a067-84e6e8fff422
+            clientName: api-client
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/*
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          keycloak:
+            authorization-uri: http://192.168.1.89:28080/auth/realms/startup/protocol/openid-connect/auth
+            token-uri: http://192.168.1.89:28081/auth/realms/startup/protocol/openid-connect/token
+            user-info-uri: http://192.168.1.89:28080/auth/realms/startup/protocol/openid-connect/userinfo
+            jwk-set-uri: http://192.168.1.89:28080/auth/realms/startup/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE

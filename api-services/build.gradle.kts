@@ -64,3 +64,7 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+application {
+	mainClass = "com.startup.apiservices.ApiServicesApplication"
+}

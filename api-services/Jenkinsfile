@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t anjannandy/startup-api-services api-services/Dockerfile'
+        sh 'docker build -t anjannandy/startup-api-services ./api-services/Dockerfile'
       }
     }
     stage('Login') {

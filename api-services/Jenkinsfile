@@ -25,10 +25,8 @@ pipeline {
 
     stage('Deploying api-services container to Kubernetes') {
         steps {
-          script {
-            kubernetesApply(
-            file: 'api-services/app.yaml'
-             )
+         withCredentials([file(credentialsId: 'kubernetes-config')]) {
+             sh 'kubectl apply -f api-services/app.yaml'
           }
         }
     }

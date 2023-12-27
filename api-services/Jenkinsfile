@@ -22,6 +22,14 @@ pipeline {
         sh 'docker push anjannandy/startup-api-services'
       }
     }
+
+    stage('Deploying React.js container to Kubernetes') {
+        steps {
+          script {
+            kubernetesDeploy(configs: "api-services/app.yaml")
+          }
+        }
+    }
   }
   post {
     always {
@@ -29,12 +37,5 @@ pipeline {
     }
   }
 
-  stage('Deploying React.js container to Kubernetes') {
-    steps {
-      script {
-        kubernetesDeploy(configs: "api-services/app.yaml")
-      }
-    }
-   }
 
 }

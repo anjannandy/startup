@@ -23,13 +23,14 @@ pipeline {
       }
     }
 
-    stage('Deploying api-services container to Kubernetes') {
-        steps {
-         withCredentials([file(credentialsId: 'kubernetes-config')]) {
-             sh 'kubectl apply -f api-services/app.yaml'
-          }
-        }
-    }
+   stage('Deploying api-services container to Kubernetes') {
+           steps {
+              withKubeConfig([credentialsId: 'kubernetes-config', serverUrl: 'https://192.168.1.200:6443']) {
+                   sh 'kubectl apply -f api-services/app.yaml'
+                }
+             }
+           }
+       }
   }
   post {
     always {

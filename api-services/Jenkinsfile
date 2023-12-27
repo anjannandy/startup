@@ -26,7 +26,10 @@ pipeline {
     stage('Deploying api-services container to Kubernetes') {
         steps {
           script {
-            kubernetesApply(configs: "api-services/app.yaml", kubeconfigId: "kubernetes-config")
+            kubernetesApply(
+            configs: 'api-services/app.yaml',
+             kubeconfigId: 'kubernetes-config'
+             )
           }
         }
     }

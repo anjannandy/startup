@@ -23,16 +23,16 @@ pipeline {
       }
     }
 
-    stage('Deploying api-services container to Kubernetes') {
-        steps {
-          script {
-            kubernetesApply(
-            configs: 'api-services/app.yaml',
-             kubeconfigId: 'kubernetes-config'
-             )
-          }
-        }
-    }
+    stage('Apply Manifests') {
+                steps {
+                    script {
+                        kubernetesApply(
+                            configs: 'deployment.yaml,service.yaml',  // List of manifests to apply
+                            kubeconfigId: 'my-kubeconfig'  // Reference to your kubeconfig credential
+                        )
+                    }
+                }
+            }
   }
   post {
     always {

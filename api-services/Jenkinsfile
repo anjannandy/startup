@@ -4,7 +4,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('docker-hub')
+    DOCKERHUB_CREDENTIALS = credentials('docker-hub'
   }
   stages {
     stage('Build') {
@@ -23,10 +23,10 @@ pipeline {
       }
     }
 
-    stage('Deploying React.js container to Kubernetes') {
+    stage('Deploying api-services container to Kubernetes') {
         steps {
           script {
-            kubernetesDeploy(configs: "api-services/app.yaml")
+            kubernetesApply(configs: "api-services/app.yaml", kubeconfigId: "kubernetes-config")
           }
         }
     }

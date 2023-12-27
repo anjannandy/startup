@@ -27,8 +27,7 @@ pipeline {
         steps {
           script {
             kubernetesApply(
-            configs: 'api-services/app.yaml',
-             kubeconfigId: 'kubernetes-config'
+            file: 'api-services/app.yaml'
              )
           }
         }

@@ -2,6 +2,7 @@ spring:
   application:
     name: springboot-sample
 
+
 logging:
   level:
     org.springframework.security: DEBUG

@@ -1,0 +1,21 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: api-services-auth
+spec:
+  selector:
+    matchLabels:
+       app: api-services
+  rules:
+    - from:
+        - source:
+            requestPrincipals: [ "*" ]
+      to:
+        - operation:
+            methods: [ "GET" ]
+            paths: [ "/api*" ]
+      when:
+        - key: request.auth.claims[resource_access][api-client][roles]
+          values: [ "USER" ]
+
+

@@ -1,0 +1,11 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: api-services-request-authentication
+spec:
+  selector:
+     matchLabels:
+      app: api-services
+  jwtRules:
+  - issuer: "http://192.168.1.89:28080/auth/realms/startup"
+    jwksUri: "http://192.168.1.89:28080/auth/realms/startup/protocol/openid-connect/certs"
